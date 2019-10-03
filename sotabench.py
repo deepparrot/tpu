@@ -6,10 +6,9 @@ from absl import app
 from absl import flags
 import tensorflow as tf
 
-import efficientnet_builder
-import preprocessing
-import utils
-from edgetpu import efficientnet_edgetpu_builder
+import from models.official.efficientnet.efficientnet_builder
+import models.official.efficientnet.preprocessing
+import models.official.efficientnet.utils
 
 flags.DEFINE_string('model_name', 'efficientnet-b0', 'Model name to eval.')
 flags.DEFINE_string('runmode', 'examples', 'Running mode: examples or imagenet')
@@ -37,9 +36,7 @@ class EvalCkptDriver(utils.EvalCkptDriver):
 
   def build_model(self, features, is_training):
     """Build model with input features."""
-    if self.model_name.startswith('efficientnet-edgetpu'):
-      model_builder = efficientnet_edgetpu_builder
-    elif self.model_name.startswith('efficientnet'):
+    if self.model_name.startswith('efficientnet'):
       model_builder = efficientnet_builder
     else:
       raise ValueError(
@@ -62,10 +59,7 @@ class EvalCkptDriver(utils.EvalCkptDriver):
 
 def get_eval_driver(model_name, include_background_label=False):
   """Get a eval driver."""
-  if model_name.startswith('efficientnet-edgetpu'):
-    _, _, image_size, _ = (
-        efficientnet_edgetpu_builder.efficientnet_edgetpu_params(model_name))
-  elif model_name.startswith('efficientnet'):
+  if model_name.startswith('efficientnet'):
     _, _, image_size, _ = efficientnet_builder.efficientnet_params(model_name)
   else:
     raise ValueError(
