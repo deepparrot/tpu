@@ -14,10 +14,10 @@ flags.DEFINE_string('model_name', 'efficientnet-b0', 'Model name to eval.')
 flags.DEFINE_string('runmode', 'examples', 'Running mode: examples or imagenet')
 flags.DEFINE_string(
     'imagenet_eval_glob', None, 'Imagenet eval image glob, '
-    'such as /imagenet/ILSVRC2012*.JPEG')
+    'such as ./data/vision/imagenet/ILSVRC2012_img_val/ILSVRC2012*.JPEG')
 flags.DEFINE_string(
     'imagenet_eval_label', None, 'Imagenet eval label file path, '
-    'such as /imagenet/ILSVRC2012_validation_ground_truth.txt')
+    'such as ./data/vision/imagenet/ILSVRC2012_devkit_t12/data/ILSVRC2012_validation_ground_truth.txt')
 flags.DEFINE_string('ckpt_dir', '/tmp/ckpt/', 'Checkpoint folders')
 flags.DEFINE_boolean('enable_ema', True, 'Enable exponential moving average.')
 flags.DEFINE_string('export_ckpt', None, 'Exported ckpt for eval graph.')
