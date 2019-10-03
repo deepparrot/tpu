@@ -6,7 +6,7 @@ from absl import app
 from absl import flags
 import tensorflow as tf
 
-import efficientnet_builder from models.official.efficientnet.efficientnet_builder
+import models.official.efficientnet.efficientnet_builder as efficientnet_builder
 import models.official.efficientnet.preprocessing as preprocessing
 import models.official.efficientnet.utils as utils
 
