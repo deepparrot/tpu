@@ -6,9 +6,9 @@ from absl import app
 from absl import flags
 import tensorflow as tf
 
-import from models.official.efficientnet.efficientnet_builder
-import models.official.efficientnet.preprocessing
-import models.official.efficientnet.utils
+import efficientnet_builder from models.official.efficientnet.efficientnet_builder
+import models.official.efficientnet.preprocessing as preprocessing
+import models.official.efficientnet.utils as utils
 
 flags.DEFINE_string('model_name', 'efficientnet-b0', 'Model name to eval.')
 flags.DEFINE_string('runmode', 'examples', 'Running mode: examples or imagenet')
