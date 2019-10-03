@@ -79,19 +79,9 @@ FLAGS = flags.FLAGS
 def main(unused_argv):
   tf.logging.set_verbosity(tf.logging.ERROR)
   driver = get_eval_driver(FLAGS.model_name, FLAGS.include_background_label)
-  if FLAGS.runmode == 'examples':
-    # Run inference for an example image.
-    driver.eval_example_images(FLAGS.ckpt_dir, [FLAGS.example_img],
-                               FLAGS.labels_map_file, FLAGS.enable_ema,
-                               FLAGS.export_ckpt)
-  elif FLAGS.runmode == 'imagenet':
-    # Run inference for imagenet.
-    driver.eval_imagenet(FLAGS.ckpt_dir, FLAGS.imagenet_eval_glob,
+  driver.eval_imagenet(FLAGS.ckpt_dir, FLAGS.imagenet_eval_glob,
                          FLAGS.imagenet_eval_label, FLAGS.num_images,
                          FLAGS.enable_ema, FLAGS.export_ckpt)
-  else:
-    print('must specify runmode: examples or imagenet')
-
 
 if __name__ == '__main__':
   app.run(main)
